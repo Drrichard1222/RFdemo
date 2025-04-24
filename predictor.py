@@ -65,7 +65,7 @@ X_9 = st.selectbox("X_9:", options=[0, 1], format_func=lambda x:"0"if x==1 else"
 X_28 = st.number_input("X_28:", min_value=0, max_value=100, value=41)
 
 # 处理输入数据并进行预测
-feature_values = [X_30, X_39, X_46, X_32, X_32, X_34, X_33, X_9, X_28]# 将用户输入的特征值存入列表
+feature_values = [X_30, X_39, X_46, X_32, X_34, X_33, X_9, X_28]# 将用户输入的特征值存入列表
 features=np.array([feature_values])# 将特征转换为NumPy 数组，适用于模型输入
 
 # 当用户点击“ Predict”按钮时执行以下代码
