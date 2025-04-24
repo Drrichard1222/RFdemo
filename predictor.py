@@ -23,7 +23,7 @@ from lime.lime_tabular import LimeTabularExplainer
 model = joblib.load('RF.pkl')
 
 #从X_test.csv文件加载测试数据，以便用于LIME解释器
-X_test = pd.read.csv('x_test.csv')
+X_test = pd.read.csv('X_test.csv')
 
 #定义特征名称，对应数据集中的列名
 feature_names = [
