@@ -1,6 +1,6 @@
 # 导入 Streamlit 库，用于构建Web 应用
 import streamlit as st
-
+import os
 # 导入joblib库，用于加载和保存机器学习模型
 import joblib
 
@@ -117,9 +117,8 @@ if st.button("Predict"):
     else:
         shap.force_plot(explainer_shap.expected_value[0], shap_values[:,:,0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True) 
     
-    plt. savefig("shap_force_plot.png", bbox_inches='tight', dpi=1200) 
-    st. image("shap_force_plot. png", caption='SHAP Force Plot Explanation')
-    
+    image_path = os.path.join(os.path.dirname(__file__), "shap_force_plot.png") 
+    st.image(image_path, caption='SHAP Force Plot Explanation')
     
     # LIME Explanation
     st.subheader("LIME Explanation")
