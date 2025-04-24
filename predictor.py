@@ -108,8 +108,8 @@ if st. button("Predict"):
     # 解释类别1（患病）的SHAP值
     # 特征值数据
     # 使用Matplotlib 绘图
-    if predicted_class = 1:
-        shap.force_plot(explainer_shap. expected_value[1], shap_values[ 1], pd. DataFrame([feature_values], columns=feature_names), matplotlib=True) 
+    if predicted_class == 1:
+        shap.force_plot(explainer_shap. expected_value[1], shap_values[1], pd. DataFrame([feature_values], columns=feature_names), matplotlib=True) 
     # 期望值（基线值）
     # 解释类别0（未患病）的SHAP值
     # 特征值数据
