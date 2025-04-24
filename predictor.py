@@ -71,10 +71,13 @@ features=np.array([feature_values])# 将特征转换为NumPy 数组，适用于�
 # 当用户点击“ Predict”按钮时执行以下代码
 if st.button("Predict"):
     # 预测类别（0：无XX病，1：有XX病）
-    predicted_class = model.predict(features)[0] # 预测类别的概率
+    predicted_class = model.predict(features)[0]
+    # 预测类别的概率
     predicted_proba = model.predict_proba(features)[0] 
+
+
     # 显示预测结果
-    st.write(f"**Predicted Class: * {predicted_class} (1:Disease, 0:No Disease)")
+    st.write(f"**Predicted Class: * {predicted_class} (1: Disease, 0: No Disease)")
     st.write(f"**Prediction Probabilities: ** {predicted_proba}")
 
     # 根据预测结果生成建议
@@ -82,8 +85,8 @@ if st.button("Predict"):
     # 如果预测类别为1（高风险）
     if predicted_class == 1:
         advice = (
-            f"According to our model, you have a high risk of XX disease."
-            f"The model predicts that your probability of having XX disease is {probability:.1f}%."
+            f"According to our model, you have a high risk of XX disease. "
+            f"The model predicts that your probability of having XX disease is {probability:.1f}%. "
             "It's advised to consult with your healthcare provider for further evaluation and possible intervention."
         )
     # 如果预测类别为0（低风险）
@@ -109,7 +112,7 @@ if st.button("Predict"):
     # 特征值数据
     # 使用Matplotlib 绘图
     if predicted_class == 1:
-        shap.force_plot(explainer_shap. expected_value[1], shap_values[:,:,1], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True) 
+        shap.force_plot(explainer_shap.expected_value[1], shap_values[:,:,1], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True) 
     # 期望值（基线值）
     # 解释类别0（未患病）的SHAP值
     # 特征值数据
@@ -117,8 +120,8 @@ if st.button("Predict"):
     else:
         shap.force_plot(explainer_shap.expected_value[0], shap_values[:,:,0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True) 
     
-    image_path = os.path.join(os.path.dirname(__file__), "shap_force_plot.png") 
-    st.image(image_path, caption='SHAP Force Plot Explanation')
+    plt.savefig("shap_force_plot.png",bbox_inches='tight',dpi=1200)
+    st.image("shap_force_plot.png", caption='SHAP Force Plot Explanation')
     
     # LIME Explanation
     st.subheader("LIME Explanation")
@@ -126,6 +129,7 @@ if st.button("Predict"):
         training_data=X_test.values,
         feature_names=X_test.columns.tolist(),
         class_names=['Not sick', 'Sick'], # Adjust class names to match your classification task mode='classification
+        model_type='classification'
 )
 
     # Explain the instance
