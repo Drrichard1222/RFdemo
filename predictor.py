@@ -69,12 +69,12 @@ feature_values = [X_30, X_39, X_46, X_32, X_34, X_33, X_9, X_28]# 将用户输�
 features=np.array([feature_values])# 将特征转换为NumPy 数组，适用于模型输入
 
 # 当用户点击“ Predict”按钮时执行以下代码
-if st. button("Predict"):
+if st.button("Predict"):
     # 预测类别（0：无XX病，1：有XX病）
     predicted_class = model.predict(features)[0] # 预测类别的概率
-    predicted_proba = model. predict_proba(features)[0] 
+    predicted_proba = model.predict_proba(features)[0] 
     # 显示预测结果
-    st.write(f"**Predicted Class: * {predicted_class} (1: Disease, 0: No Disease)")
+    st.write(f"**Predicted Class: * {predicted_class} (1:Disease, 0:No Disease)")
     st.write(f"**Prediction Probabilities: ** {predicted_proba}")
 
     # 根据预测结果生成建议
@@ -82,15 +82,15 @@ if st. button("Predict"):
     # 如果预测类别为1（高风险）
     if predicted_class == 1:
         advice = (
-            f"According to our model, you have a high risk of XX disease. "
-            f"The model predicts that your probability of having XX disease is {probability:.1f}%. "
+            f"According to our model, you have a high risk of XX disease."
+            f"The model predicts that your probability of having XX disease is {probability:.1f}%."
             "It's advised to consult with your healthcare provider for further evaluation and possible intervention."
         )
     # 如果预测类别为0（低风险）
     else:
         advice = (
             f"According to our model, you have a low risk of XX disease."
-            f"The model predicts that your probability of not having XX disease is {probability:.1f}%. "
+            f"The model predicts that your probability of not having XX disease is {probability:.1f}%."
             "However, maintaining a healthy lifestyle is important. Please continue regular check-ups with your healthcare provider."
         )
     # 显示建议
@@ -101,7 +101,7 @@ if st. button("Predict"):
     #创建SHAP解释器，基于树模型（如随机森林）
     explainer_shap = shap.TreeExplainer(model) 
     #计算SHAP值，用于解释模型的预测
-    shap_values = explainer_shap. shap_values(pd. DataFrame([feature_values], columns=feature_names)) 
+    shap_values = explainer_shap. shap_values(pd.DataFrame([feature_values], columns=feature_names)) 
     
     # 根据预测类别显示SHAP强制图
     # 期望值（基线值）
@@ -109,7 +109,7 @@ if st. button("Predict"):
     # 特征值数据
     # 使用Matplotlib 绘图
     if predicted_class == 1:
-        shap.force_plot(explainer_shap. expected_value[1], shap_values[1], pd. DataFrame([feature_values], columns=feature_names), matplotlib=True) 
+        shap.force_plot(explainer_shap. expected_value[1], shap_values[:,:,1], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True) 
     # 期望值（基线值）
     # 解释类别0（未患病）的SHAP值
     # 特征值数据
