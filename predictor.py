@@ -20,7 +20,7 @@ import matplotlib. pyplot as plt
 from lime.lime_tabular import LimeTabularExplainer
 
 #加载训练好的随机森林模型（RF.pkL）
-model = joblib.load('RF. pk1')
+model = joblib.load('RF.pk1')
 
 #从X_test.csv文件加载测试数据，以便用于LIME解释器
 X_test = pd.read.csv('x_test.csv')
