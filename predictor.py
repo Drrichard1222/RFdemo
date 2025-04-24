@@ -1,6 +1,6 @@
 # 导入 Streamlit 库，用于构建Web 应用
 import streamlit as st
-import os
+
 # 导入joblib库，用于加载和保存机器学习模型
 import joblib
 
@@ -129,7 +129,7 @@ if st.button("Predict"):
         training_data=X_test.values,
         feature_names=X_test.columns.tolist(),
         class_names=['Not sick', 'Sick'], # Adjust class names to match your classification task mode='classification
-        model_type='classification'
+        mode='classification'
 )
 
     # Explain the instance
