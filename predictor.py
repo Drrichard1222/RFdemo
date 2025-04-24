@@ -41,28 +41,28 @@ feature_names = [
 st.title("XX病风险预测器") # 设置网页标题
          
 # X_30：数值输入框
-X_30 = st.number_input("X_30:", min_value=0, max_value=500, value=41)
+X_30 = st.number_input("X_30:", min_value=0, max_value=500, value=12)
 
 # X_39：数值输入框
-X_39 = st.number_input("X_39:", min_value=0, max_value=15000, value=41)
+X_39 = st.number_input("X_39:", min_value=0, max_value=15000, value=482)
 
 # X_46：数值输入框
-X_46 = st.number_input("X_46:", min_value=0, max_value=100, value=41)
+X_46 = st.number_input("X_46:", min_value=0, max_value=100, value=74)
 
 # X_32：数值输入框
-X_32 = st.number_input("X_32:", min_value=0, max_value=10, value=4)
+X_32 = st.number_input("X_32:", min_value=0, max_value=10, value=4.6)
 
 # X_34：数值输入框
-X_34 = st.number_input("X_34:", min_value=0, max_value=200, value=41)
+X_34 = st.number_input("X_34:", min_value=0, max_value=200, value=170)
 
 # X_33：数值输入框
-X_33 = st.number_input("X_33:", min_value=0, max_value=100, value=41)
+X_33 = st.number_input("X_33:", min_value=0, max_value=100, value=1.3)
 
 # X_9：数值输入框
 X_9 = st.selectbox("X_9:", options=[0, 1], format_func=lambda x:"0"if x==1 else"1")
 
 # X_33：数值输入框
-X_28 = st.number_input("X_28:", min_value=0, max_value=100, value=41)
+X_28 = st.number_input("X_28:", min_value=0, max_value=100, value=32.52)
 
 # 处理输入数据并进行预测
 feature_values = [X_30, X_39, X_46, X_32, X_34, X_33, X_9, X_28]# 将用户输入的特征值存入列表
