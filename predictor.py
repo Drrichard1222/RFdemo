@@ -137,4 +137,4 @@ if st. button("Predict"):
 
     # Display the LIME explanation without the feature value table
     lime_html = lime_exp.as_html(show_table=False) # Disable feature value table
-    st.components.v1.html(lime_html, height=800. scrolling=True)  
+    st.components.v1.html(lime_html, height=800, scrolling=True)  
