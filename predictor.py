@@ -50,7 +50,7 @@ X_39 = st.number_input("X_39:", min_value=0, max_value=15000, value=41)
 X_46 = st.number_input("X_46:", min_value=0, max_value=100, value=41)
 
 # X_32：数值输入框
-X_32 = st.number_input("X_32:", min_value=0, max_value=10, value=4.1)
+X_32 = st.number_input("X_32:", min_value=0, max_value=10, value=4)
 
 # X_34：数值输入框
 X_34 = st.number_input("X_34:", min_value=0, max_value=200, value=41)
