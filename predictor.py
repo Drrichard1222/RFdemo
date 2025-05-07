@@ -27,45 +27,45 @@ X_test = pd.read_csv('X_test.csv')
 
 #定义特征名称，对应数据集中的列名
 feature_names = [
-    "X_30", # X_30
-    "X_39", # X_39
-    "X_46", # X_46
-    "X_32", # X_32
-    "X_34", # X_34
-    "X_33", # X_33
-    "X_9", # X_9
-    "X_28" # X_28
+    "Antibiotic",
+    "Ventilation",
+    "Congestive_heart_failure",
+    "Cerebrovascular_disease",
+    "Chronic_pulmonary_disease", 
+    "Paraplegia",
+    "Respiratory_rate_min", 
+    "Temperature_max"
 ]
 
 # Streamlit用面
-st.title("XX病风险预测器") # 设置网页标题
+st.title("TBI患者肺炎发生风险预测器") # 设置网页标题
          
-# X_30：数值输入框
-X_30 = st.number_input("X_30:", min_value=0, max_value=500, value=12)
+# Antibiotic：数值输入框
+Antibiotic = st.selectbox("Antibiotic:", options=[0, 1], format_func=lambda x:"0"if x==1 else"1")
 
-# X_39：数值输入框
-X_39 = st.number_input("X_39:", min_value=0, max_value=15000, value=482)
+# Ventilation：数值输入框
+Ventilation = st.selectbox("Ventilation:", options=[0, 1], format_func=lambda x:"0"if x==1 else"1")
 
-# X_46：数值输入框
-X_46 = st.number_input("X_46:", min_value=0, max_value=100, value=74)
+# Congestive_heart_failure：数值输入框
+Congestive_heart_failure = st.selectbox("Congestive_heart_failure:", options=[0, 1], format_func=lambda x:"0"if x==1 else"1")
 
-# X_32：数值输入框
-X_32 = st.number_input("X_32:", min_value=0, max_value=10, value=5)
+# Cerebrovascular_disease：数值输入框
+Cerebrovascular_disease = st.selectbox("Cerebrovascular_disease:", options=[0, 1], format_func=lambda x:"0"if x==1 else"1")
 
-# X_34：数值输入框
-X_34 = st.number_input("X_34:", min_value=0, max_value=200, value=70)
+# Chronic_pulmonary_disease：数值输入框
+Chronic_pulmonary_disease = st.selectbox("Chronic_pulmonary_disease:", options=[0, 1], format_func=lambda x:"0"if x==1 else"1")
 
-# X_33：数值输入框
-X_33 = st.number_input("X_33:", min_value=0, max_value=100, value=1)
+# Paraplegia：数值输入框
+Paraplegia = st.selectbox("Paraplegia:", options=[0, 1], format_func=lambda x:"0"if x==1 else"1")
 
-# X_9：数值输入框
-X_9 = st.selectbox("X_9:", options=[0, 1], format_func=lambda x:"0"if x==1 else"1")
+# Respiratory_rate_min：数值输入框
+Respiratory_rate_min = st.number_input("Respiratory_rate_min:", min_value=0, max_value=35, value=18)
 
-# X_33：数值输入框
-X_28 = st.number_input("X_28:", min_value=0, max_value=100, value=33)
+# Temperature_max：数值输入框
+Temperature_max = st.number_input("Temperature_max:", min_value=0, max_value=50, value=36)
 
 # 处理输入数据并进行预测
-feature_values = [X_30, X_39, X_46, X_32, X_34, X_33, X_9, X_28]# 将用户输入的特征值存入列表
+feature_values = [Antibiotic, Ventilation, Congestive_heart_failure, Cerebrovascular_disease, Chronic_pulmonary_disease, Paraplegia, Respiratory_rate_min,Temperature_max]# 将用户输入的特征值存入列表
 features=np.array([feature_values])# 将特征转换为NumPy 数组，适用于模型输入
 
 # 当用户点击“ Predict”按钮时执行以下代码
@@ -102,7 +102,7 @@ if st.button("Predict"):
     # SHAP解释
     st.subheader("SHAP Force Plot Explanation") 
     #创建SHAP解释器，基于树模型（如随机森林）
-    explainer_shap = shap.TreeExplainer(model) 
+    explainer_shap = shap.LinearExplainer(model) 
     #计算SHAP值，用于解释模型的预测
     shap_values = explainer_shap. shap_values(pd.DataFrame([feature_values], columns=feature_names)) 
     
